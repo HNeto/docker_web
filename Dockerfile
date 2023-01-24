@@ -15,5 +15,5 @@ RUN mv /srv/PSGA_WEB/PSGA_WEB/.env.exemple /srv/PSGA_WEB/PSGA_WEB/.env
 RUN cd /srv/PSGA_WEB/PSGA_WEB/ && yarn
 RUN echo "module.exports = {" > .ecosystem.config.js && echo "    apps : [{" >> .ecosystem.config.js && echo "        name: 'PSGA_WEB_BACK'," >> .ecosystem.config.js && echo "        cwb: '/srv/PSGA_WEB/PSGA_WEB_API/'," >> .ecosystem.config.js && echo "        exec_mode: 'fork'," >> .ecosystem.config.js && echo "        watch: 'true'," >> .ecosystem.config.js && echo "        script: 'cd /srv/PSGA_WEB/PSGA_WEB_API/ && yarn start'," >> .ecosystem.config.js && echo "        env: {" >> .ecosystem.config.js && echo "            NODE_ENV: 'production'" >> .ecosystem.config.js && echo "        }" >> .ecosystem.config.js && echo "    }, {" >> .ecosystem.config.js && echo "        name: 'PSGA_WEB_FRONT'," >> .ecosystem.config.js && echo "        cwb: '/srv/PSGA_WEB/PSGA_WEB/'," >> .ecosystem.config.js && echo "        exec_mode: 'fork'," >> .ecosystem.config.js && echo "        watch: 'true'," >> .ecosystem.config.js && echo "        script: 'cd /srv/PSGA_WEB/PSGA_WEB && yarn start'," >> .ecosystem.config.js && echo "        env: {" >> .ecosystem.config.js && echo "            NODE_ENV: 'production'" >> .ecosystem.config.js && echo "        }" >> .ecosystem.config.js && echo "    }]" >> .ecosystem.config.js && echo "};" >> .ecosystem.config.js
 RUN pm2 install pm2-server-monit
-CMD ["pm2", "start .ecosystem.config.js"]
-EXPOSE 3000
+CMD ["pm2-runtime", "start", "/srv/.ecosystem.config.js"]
+EXPOSE 3000 3001 1433
