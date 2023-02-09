@@ -17,7 +17,7 @@ RUN echo "//CONFIG_SISTEM_AUTH_SECRET = '61f5bfbb41d57aa766cd04bfb3d629b0'" > /s
 RUN cd /srv/APP_WEB/WEB_BACK/ && yarn
 
 RUN git clone http://example.com/project/web_front /srv/APP_WEB/APP_FRONT/
-RUN mv /srv/APP_WEB/APP_FRONT/.env.exemple /srv/APP_WEB/APP_FRONT/.env
+RUN echo "//HTTPS =  true" >> /srv/APP_WEB/WEB_FRONT/.env && echo "//SSL_CRT_FILE = ./.cert/certificate.crt" >> /srv/APP_WEB/WEB_FRONT/.env && echo "//SSL_KEY_FILE = ./.cert/private.key" >> /srv/APP_WEB/WEB_FRONT/.env && echo "" >> /srv/APP_WEB/WEB_FRONT/.env && echo "//PORT = '3000'" >> /srv/APP_WEB/WEB_FRONT/.env && echo "" >> /srv/APP_WEB/WEB_FRONT/.env && echo "CONFIG_SISTEM_AUTH_API_FRONT = 'http://localhost:3000/'" >> /srv/APP_WEB/WEB_FRONT/.env
 RUN cd /srv/APP_WEB/APP_FRONT/ && yarn
 
 RUN git clone http://example.com/project/webserver_indice /srv/APP_INDICE/
