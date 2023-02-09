@@ -7,7 +7,7 @@ Default commands:
     docker build -t dockerfile .\
     
   Create a Container:
-    docker container run --name instance_web -dp 3000:3000 -p 3001:3001 -p 3002:3002 -p 1433:1433 dockerfile
+    docker container run --name instance_web -dp 1433:1433 -p 3000:3000 -p 3001:3001 -p 3002:3002 -p 7777:7777 dockerfile
     
   Start Shell:
     docker container exec -it psga_web /bin/bash
